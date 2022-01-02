@@ -22,6 +22,7 @@
                     {{ trans('cruds.user.fields.name_helper') }}
                 </p>
             </div>
+
             <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                 <label for="email">{{ trans('cruds.user.fields.email') }}*</label>
                 <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}" required>
@@ -34,6 +35,16 @@
                     {{ trans('cruds.user.fields.email_helper') }}
                 </p>
             </div>
+            <!--<div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
+                <label for="email">Usurio*</label>
+                <input type="textU" id="username" name="username" class="form-control" value="{{ old('username', isset($user) ? $user->username : '') }}" required>
+                @if($errors->has('username'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('username') }}
+                    </em>
+                @endif
+            </div>-->
+
             <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                 <label for="password">{{ trans('cruds.user.fields.password') }}</label>
                 <input type="password" id="password" name="password" class="form-control">

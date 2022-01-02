@@ -20,7 +20,8 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-    protected $fillable = ['name', 'email', 'password', 'remember_token'];
+    protected $table = 'sys_users';
+    protected $fillable = ['name', 'email', 'password', 'remember_token', 'username'];
     
     
     /**

@@ -19,9 +19,6 @@ class RolesController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
 
         $roles = Role::all();
 
@@ -35,9 +32,6 @@ class RolesController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
         $permissions = Permission::get()->pluck('name', 'name');
 
         return view('admin.roles.create', compact('permissions'));
@@ -51,9 +45,6 @@ class RolesController extends Controller
      */
     public function store(StoreRolesRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
         $role = Role::create($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
         $role->givePermissionTo($permissions);
@@ -70,9 +61,6 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
         $permissions = Permission::get()->pluck('name', 'name');
 
         return view('admin.roles.edit', compact('role', 'permissions'));
@@ -87,9 +75,6 @@ class RolesController extends Controller
      */
     public function update(UpdateRolesRequest $request, Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
 
         $role->update($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
@@ -100,10 +85,6 @@ class RolesController extends Controller
 
     public function show(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
-
         $role->load('permissions');
 
         return view('admin.roles.show', compact('role'));
@@ -118,9 +99,6 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
-            return abort(401);
-        }
 
         $role->delete();
 

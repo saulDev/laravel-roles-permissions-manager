@@ -55,9 +55,6 @@
                                 {{ $user->email ?? '' }}
                             </td>
                             <td>
-                                @foreach($user->roles()->pluck('name') as $role)
-                                    <span class="badge badge-info">{{ $role }}</span>
-                                @endforeach
                             </td>
                             <td>
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
