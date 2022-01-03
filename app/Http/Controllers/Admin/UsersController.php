@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -19,7 +20,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = DB::select(DB::raw(
+            "select sys_users.id, sys_users.name, sys_users.username, group_concat(sys_roles.name) roles from sys_users
+                    join sys_model_has_roles on sys_model_has_roles.model_id = sys_users.id
+                    join sys_roles on sys_roles.id = sys_model_has_roles.role_id
+                    group by id, name, sys_users.username"
+        ), [ ]);
 
         return view('admin.users.index', compact('users'));
     }

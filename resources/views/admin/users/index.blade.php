@@ -29,7 +29,7 @@
                             {{ trans('cruds.user.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email') }}
+                            Usuario
                         </th>
                         <th>
                             {{ trans('cruds.user.fields.roles') }}
@@ -52,9 +52,10 @@
                                 {{ $user->name ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email ?? '' }}
+                                {{ $user->username ?? '' }}
                             </td>
                             <td>
+                                {{ $user->roles ?? '' }}
                             </td>
                             <td>
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
